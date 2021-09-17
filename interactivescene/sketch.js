@@ -16,6 +16,8 @@ let g = 220;
 let b = 50;
 let isJumping = false;
 let increaseSpeedX;
+let platform;
+let length;
 
 function setup() {
   if (windowWidth > windowHeight) {
@@ -26,9 +28,16 @@ function setup() {
   }
   diameter = 20;
   x = width / 2;
-  y = height - size;
+  y = height - diameter;
   speedY = 1;
   gravity = 0.2;
+  platform = {
+    length: 200,
+    depth: 2,
+    x: width - length,
+    y: height - 100,
+    
+  };
 }
 
 function draw() {
@@ -50,13 +59,17 @@ function movement() {
   }
 }
 
+function createplatform() {
+rect(platform.x, platform.y, platform.length, platform.depth)
+}
+
 function displayBall() {
   fill(r, g, b);
-  circle(x, y, size);
+  circle(x, y, diameter);
 }
 
 function jumping() {
-  if (y === height - size) {
+  if (y === height - diameter) {
     gravity = 0;
     isJumping = false;
     // console.log(isJumping);
@@ -65,8 +78,8 @@ function jumping() {
     gravity = 0.2;
   }
 
-  if (y > height - size) {
-    y = height - size;
+  if (y > height - diameter) {
+    y = height - diameter;
     speedY = 0;
   } 
   else {
