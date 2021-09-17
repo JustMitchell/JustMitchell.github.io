@@ -5,10 +5,9 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let theWidthOfSomeRectangle = 30;
 let x;
 let y;
-let size;
+let diameter;
 let speedY;
 let speedX = 5;
 let gravity;
@@ -16,6 +15,7 @@ let r = 100;
 let g = 220;
 let b = 50;
 let isJumping = false;
+let increaseSpeedX;
 
 function setup() {
   if (windowWidth > windowHeight) {
@@ -24,7 +24,7 @@ function setup() {
   else {
     createCanvas(windowWidth, windowWidth);
   }
-  size = 20;
+  diameter = 20;
   x = width / 2;
   y = height - size;
   speedY = 1;
