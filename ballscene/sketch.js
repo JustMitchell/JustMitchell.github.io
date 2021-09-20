@@ -4,17 +4,12 @@ let ballArray = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  for(let index = 0; index < 30; index++) {
-    let newBall = {
-      x: random(width),
-      y: random(height),
-      radius: random(10, 30),
-      ballColor: color(random(255),random(255),random(255),random(255)),
-      dx: random(5, 10),
-      dy: random(5, 10),
-    };
-    ballArray.push(newBall);
+  for(let index = 0; index < 1; index++) {
+    spawnBall();
   }
+
+  // spawn ball every .5 seconds
+  window.setInterval(spawnBall, 500);
 }
 
 
@@ -24,6 +19,25 @@ function draw() {
 
   moveBall();
   displayBall();
+}
+
+
+function mousePressed() {
+  spawnBall();
+  ballArray[ballArray.length-1].x = mouseX;
+  ballArray[ballArray.length-1].y = mouseY;
+}
+
+function spawnBall() {
+  let newBall = {
+    x: random(width),
+    y: random(height),
+    radius: random(10, 30),
+    ballColor: color(random(255),random(255),random(255),random(255)),
+    dx: random(5, 10),
+    dy: random(5, 10),
+  };
+  ballArray.push(newBall);
 }
 
 function moveBall(){
