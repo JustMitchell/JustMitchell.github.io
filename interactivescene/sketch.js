@@ -16,7 +16,7 @@ let g = 220;
 let b = 50;
 let isJumping = false;
 let increaseSpeedX;
-let platform;
+let platform ;
 let length;
 
 function setup() {
@@ -32,22 +32,33 @@ function setup() {
   speedY = 1;
   gravity = 0.2;
   platform = {
-    length: 200,
-    depth: 2,
-    x: width - length,
+    length: width/10,
+    depth: 30,
+    x: width - 200,
     y: height - 100,
-    
+    color: "red",
   };
 }
 
 function draw() {
   background(220);
-
+  createPlatform();
   jumping();
   movement();
   displayBall();
   // console.log(isJumping);
 }
+
+function ballHitPlatform() {
+  if (hit = collideRectCircle((platform.x, platform.y, platform.length, platform.depth, x, y, diameter)) {
+    r = 255;
+    g = 255;
+    b = 255;
+  }
+
+}
+
+
 function movement() {
   if (keyIsDown(68)) {
     //d
@@ -59,8 +70,9 @@ function movement() {
   }
 }
 
-function createplatform() {
-rect(platform.x, platform.y, platform.length, platform.depth)
+function createPlatform() {
+  fill(platform.color);
+  rect(platform.x, platform.y, platform.length, platform.depth);
 }
 
 function displayBall() {
