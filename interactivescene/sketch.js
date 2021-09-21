@@ -20,20 +20,16 @@ let platform ;
 let length;
 
 function setup() {
-  if (windowWidth > windowHeight) {
-    createCanvas(windowHeight, windowHeight);
-  } 
-  else {
-    createCanvas(windowWidth, windowWidth);
-  }
+  createCanvas(windowWidth, windowHeight);
+
   diameter = 20;
   x = width / 2;
   y = height - diameter;
   speedY = 1;
   gravity = 0.2;
   platform = {
-    length: width/10,
-    depth: 30,
+    platWidth: width/10,
+    platHeight: 30,
     x: width - 200,
     y: height - 100,
     color: "red",
@@ -50,11 +46,6 @@ function draw() {
 }
 
 function ballHitPlatform() {
-  if (hit = collideRectCircle((platform.x, platform.y, platform.length, platform.depth, x, y, diameter)) {
-    r = 255;
-    g = 255;
-    b = 255;
-  }
 
 }
 
@@ -72,12 +63,12 @@ function movement() {
 
 function createPlatform() {
   fill(platform.color);
-  rect(platform.x, platform.y, platform.length, platform.depth);
+  rect(platform.x, platform.y, platform.platWidth, platform.platHeight);
 }
 
 function displayBall() {
   fill(r, g, b);
-  circle(x, y, diameter);
+  rect(x, y, diameter);
 }
 
 function jumping() {
