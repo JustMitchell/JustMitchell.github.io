@@ -18,6 +18,7 @@ let isJumping = false;
 let increaseSpeedX;
 let platform ;
 let length;
+let hit = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -41,12 +42,18 @@ function draw() {
   createPlatform();
   jumping();
   movement();
-  displayBall();
+  displayCharacter();
+  ballHitPlatform();
   // console.log(isJumping);
 }
 
 function ballHitPlatform() {
+  hit = collideRectRect(x, y, diameter, diameter, platform.x, platform.y, platform.platWidth, platform.platHeight);
+  stroke(hit ? color("blue") : 0);
+  console.log(hit);
 
+  if (hit === true) {
+  
 }
 
 
@@ -66,9 +73,10 @@ function createPlatform() {
   rect(platform.x, platform.y, platform.platWidth, platform.platHeight);
 }
 
-function displayBall() {
+function displayCharacter() {
+  
   fill(r, g, b);
-  rect(x, y, diameter);
+  rect(x, y, diameter, diameter);
 }
 
 function jumping() {
