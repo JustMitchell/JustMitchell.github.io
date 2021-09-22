@@ -16,7 +16,8 @@ let g = 220;
 let b = 50;
 let isJumping = false;
 let increaseSpeedX;
-let platform ;
+let tpEnter ;
+let tpExit;
 let length;
 let hit = false;
 
@@ -28,32 +29,42 @@ function setup() {
   y = height - diameter;
   speedY = 1;
   gravity = 0.2;
-  platform = {
-    platWidth: width/10,
-    platHeight: 30,
-    x: width - 200,
+  tpEnter = {
+    tpWidth: width/10,
+    tpHeight: 30,
+    x: random(width, width/100),
     y: height - 100,
     color: "red",
   };
+  tpExit = {
+    tpWidth: width/10,
+    tpHeight:  10,
+    x: random(width, width/100),
+    y: random(height, height/100),
+  };
+
 }
 
 function draw() {
   background(220);
-  createPlatform();
+  createTp();
   jumping();
   movement();
   displayCharacter();
-  ballHitPlatform();
+  ballHitTp();
   // console.log(isJumping);
 }
 
-function ballHitPlatform() {
-  hit = collideRectRect(x, y, diameter, diameter, platform.x, platform.y, platform.platWidth, platform.platHeight);
+function ballHitTp() {
+  hit = collideRectRect(x, y, diameter, diameter, tpEnter.x, tpEnter.y, tpEnter.tpWidth, tpEnter.tpHeight);
   stroke(hit ? color("blue") : 0);
   console.log(hit);
 
   if (hit === true) {
-  
+    y = tpExit.y - diameter;
+    x = tpExit.x + tpExit.tpWidth/2;
+  }
+
 }
 
 
@@ -68,9 +79,12 @@ function movement() {
   }
 }
 
-function createPlatform() {
-  fill(platform.color);
-  rect(platform.x, platform.y, platform.platWidth, platform.platHeight);
+function createTp() {
+  fill(tpEnter.color);
+  rect(tpEnter.x, tpEnter.y, tpEnter.tpWidth, tpEnter.tpHeight);
+
+  fill("purple");
+  rect(tpExit.x, tpExit.y, tpExit.tpWidth, tpExit.tpHeight);
 }
 
 function displayCharacter() {
