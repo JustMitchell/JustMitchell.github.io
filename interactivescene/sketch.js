@@ -11,7 +11,7 @@ let x;
 let y;
 let diameter;
 let speedY;
-let speedX = 5;
+let speedX = 2;
 let gravity;
 let r = 100;
 let g = 220;
@@ -22,6 +22,7 @@ let tpEnter ;
 let tpExit;
 let length;
 let hit = false;
+let acceleration = 0.1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -73,9 +74,17 @@ function ballHitTp() {
 function movement() {
   if (keyIsDown(68)) { //d
     x += speedX;
+    speedX += acceleration;
+    if(speedX > 7) {
+      speedX = 7;
+    }
   }
   if (keyIsDown(65)) { // a
     x -= speedX;
+    speedX += acceleration;
+    if(speedX > 7) {
+      speedX = 7;
+    }
   }
   // tp player to other size when they go off screen
   if (x > windowWidth) {
