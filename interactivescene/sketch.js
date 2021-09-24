@@ -74,17 +74,9 @@ function ballHitTp() {
 function movement() {
   if (keyIsDown(68)) { //d
     x += speedX;
-    speedX += acceleration;
-    if(speedX > 7) {
-      speedX = 7;
-    }
   }
   if (keyIsDown(65)) { // a
     x -= speedX;
-    speedX += acceleration;
-    if(speedX > 7) {
-      speedX = 7;
-    }
   }
   // tp player to other size when they go off screen
   if (x > windowWidth) {
