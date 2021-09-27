@@ -1,9 +1,9 @@
-// Project Title
-// Your Name
-// Date
+// Interactive Scene
+// Mitchell 
+// sept 27th
 //
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Extra for Experts: used mouse wheel to change speed and color
+
 
 let holdingTpExit = false;
 let holdingTpEnter = false;
