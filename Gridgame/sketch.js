@@ -50,11 +50,17 @@ function createArray(howBig) {
   for (let y=0; y<howBig; y++) {
     newArray.push([]);
     for (let x=0; x<howBig; x++) {
-      if (random(0, 100) > 50) {
+      if (random(0, 100) < 25) {
         newArray[y].push(1);
       }
-      else {
+      else if (random(0, 100) > 25 && random(0,100) < 50) {
         newArray[y].push(2);
+      }
+      else if (random(0,100) > 50 && random(0, 100) < 75) {
+        newArray[y].push(3);
+      }
+      else {
+        newArray[y].push(4);
       }
     }
   }
