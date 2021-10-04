@@ -6,10 +6,10 @@ let cellSize;
 
 function setup() {
   if (windowHeight < windowWidth) {
-    createCanvas(windowHeight, windowHeight);
+    createCanvas(windowHeight*0.8, windowHeight*0.8);
   }
   else{
-    createCanvas(windowWidth, windowWidth);
+    createCanvas(windowWidth*0.8, windowWidth*0.8);
   }
 
   grid = createArray(cellAmount);
@@ -19,6 +19,12 @@ function setup() {
 function draw() {
   background(220);
   showGrid();
+}
+
+function clean () {
+  if ( dist(mouseX, mouseY, grid[y][x], grid[y][x]) > 100) {
+    grid[y][x] -= 1;
+  }
 }
 
 function showGrid() {
@@ -50,6 +56,7 @@ function createArray(howBig) {
   for (let y=0; y<howBig; y++) {
     newArray.push([]);
     for (let x=0; x<howBig; x++) {
+      
       if (random(0, 100) < 25) {
         newArray[y].push(1);
       }
