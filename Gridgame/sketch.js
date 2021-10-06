@@ -3,7 +3,6 @@
 let cellAmount = 250;
 let grid;
 let cellSize;
-let mouseDown = false;
 
 function setup() {
   if (windowHeight < windowWidth) {
@@ -24,40 +23,33 @@ function draw() {
 }
 
 function mousePressed() {
-  mouseDown = true;
 
   if (mouseX <= width && mouseY <= height){
     let cellX = Math.floor(mouseX/cellSize);
     let cellY = Math.floor(mouseY/cellSize);
-    while (mouseDown === true) {
-      if (frameCount % 10) {
-        for (let y=-5; y<5; y++) {
-          for (let x=-30; x<30; x++) {
-            clean(cellX+x, cellY+y);
-          }
-        }
-        for (let y=-7; y<7; y++) {
-          for(let x=-32; x<32; x++) {
-            clean(cellX+x, cellY+y);
-          }
-        }
-        for (let y=-9; y<9; y++) {
-          for(let x=-34; x<34; x++) {
-            clean(cellX+x, cellY+y);
-          }
-        }
-        for (let y=-11; y<11; y++) {
-          for(let x=-36; x<36; x++) {
-            clean(cellX+x, cellY+y);
-          }
-        }
+    
+    
+    for (let y=-5; y<5; y++) {
+      for (let x=-30; x<30; x++) {
+        clean(cellX+x, cellY+y);
+      }
+    }
+    for (let y=-7; y<7; y++) {
+      for(let x=-32; x<32; x++) {
+        clean(cellX+x, cellY+y);
+      }
+    }
+    for (let y=-9; y<9; y++) {
+      for(let x=-34; x<34; x++) {
+        clean(cellX+x, cellY+y);
+      }
+    }
+    for (let y=-11; y<11; y++) {
+      for(let x=-36; x<36; x++) {
+        clean(cellX+x, cellY+y);
       }
     }
   }
-}
-
-function mouseReleased() {
-  mouseDown = false;
 }
 
 function clean(x,y) {
@@ -107,13 +99,25 @@ function createArray(howBig) {
     newArray.push([]);
     for (let x=0; x<howBig; x++) {
       
-      if (random(0, 100) < 25) {
+      // if (random(0, 100) < 25) {
+      //   newArray[y].push(1);
+      // }
+      // else if (random(0, 100) > 25 && random(0,100) < 50) {
+      //   newArray[y].push(2);
+      // }
+      // else if (random(0,100) > 50 && random(0, 100) < 75) {
+      //   newArray[y].push(3);
+      // }
+      // else {
+      //   newArray[y].push(4);
+      // }
+      if (round(noise(grid[x]*0.01, grid[y]*0.01)*4) === 1) {
         newArray[y].push(1);
       }
-      else if (random(0, 100) > 25 && random(0,100) < 50) {
+      else if (round(noise(grid[x]*0.01, grid[y]*0.01)*4) === 2) {
         newArray[y].push(2);
       }
-      else if (random(0,100) > 50 && random(0, 100) < 75) {
+      else if (round(noise(grid[x]*0.01, grid[y]*0.01)*4) === 3) {
         newArray[y].push(3);
       }
       else {
@@ -123,3 +127,4 @@ function createArray(howBig) {
   }
   return newArray;
 }
+
