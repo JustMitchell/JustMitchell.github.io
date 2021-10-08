@@ -1,7 +1,7 @@
 // gridgame
 
 let cellAmount = 250;
-let grid;
+let grid = createArray(cellAmount);
 let cellSize;
 
 function setup() {
@@ -12,8 +12,8 @@ function setup() {
     createCanvas(windowWidth*0.8, windowWidth*0.8);
   }
 
-  grid = createArray(cellAmount);
-  cellSize = width / cellAmount;
+  cellSize = width/cellAmount;
+  grid = showGrid(grid);
 }
 
 function draw() {
@@ -50,6 +50,7 @@ function mousePressed() {
       }
     }
   }
+  
 }
 
 function clean(x,y) {
@@ -71,8 +72,14 @@ function clean(x,y) {
 
 function showGrid() {
   noStroke();
+  let scalar = 0.05;
   for (let y=0; y<cellAmount; y++) {
     for (let x=0; x<cellAmount; x++) {
+      let noiseValue = round(noise(x*scalar, y*scalar)*4);
+      grid[y][x] = noiseValue;
+      if (noiseValue === 0) {
+        grid[y][x] = 1;
+      }
       if(grid[y][x] === 0) {
         fill("white");
       }
@@ -91,6 +98,7 @@ function showGrid() {
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
   }
+  return grid;
 }
 
 function createArray(howBig) {
@@ -98,31 +106,7 @@ function createArray(howBig) {
   for (let y=0; y<howBig; y++) {
     newArray.push([]);
     for (let x=0; x<howBig; x++) {
-      
-      // if (random(0, 100) < 25) {
-      //   newArray[y].push(1);
-      // }
-      // else if (random(0, 100) > 25 && random(0,100) < 50) {
-      //   newArray[y].push(2);
-      // }
-      // else if (random(0,100) > 50 && random(0, 100) < 75) {
-      //   newArray[y].push(3);
-      // }
-      // else {
-      //   newArray[y].push(4);
-      // }
-      if (round(noise(grid[x]*0.01, grid[y]*0.01)*4) === 1) {
-        newArray[y].push(1);
-      }
-      else if (round(noise(grid[x]*0.01, grid[y]*0.01)*4) === 2) {
-        newArray[y].push(2);
-      }
-      else if (round(noise(grid[x]*0.01, grid[y]*0.01)*4) === 3) {
-        newArray[y].push(3);
-      }
-      else {
-        newArray[y].push(4);
-      }
+      newArray[y].push(1);
     }
   }
   return newArray;
