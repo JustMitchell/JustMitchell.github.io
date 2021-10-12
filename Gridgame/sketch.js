@@ -1,4 +1,4 @@
-// gridgame
+// gridgame 
 
 let cellAmount = 250;
 let grid;
