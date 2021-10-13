@@ -21,6 +21,7 @@ function draw() {
   showGrid();
 }
 
+
 function mouseDragged() {
 
   if (mouseX <= width && mouseY <= height){
