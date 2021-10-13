@@ -23,12 +23,11 @@ function draw() {
 
 
 function mouseDragged() {
-
   if (mouseX <= width && mouseY <= height){
     let cellX = Math.floor(mouseX/cellSize);
     let cellY = Math.floor(mouseY/cellSize);
     
-    
+    // changes pixel to the next color in specified area
     for (let y=-3; y<3; y++) {
       for (let x=-15; x<15; x++) {
         clean(cellX+x, cellY+y);
@@ -50,12 +49,12 @@ function mouseDragged() {
       }
     }
   }
-
 }
 
 
 function clean(x,y) {
   if (x >= 0 && x < cellAmount && y >= 0 && y < cellAmount) {
+    // when clean is ran pixels will change to next color
     if(grid[y][x] === 4){
       grid[y][x] = 0;
     }
@@ -71,11 +70,12 @@ function clean(x,y) {
   }
 }
 
+
 function showGrid() {
   noStroke();
   for (let y=0; y<cellAmount; y++) {
     for (let x=0; x<cellAmount; x++) {
-
+      // which colors to chnage the grid too
       if(grid[y][x] === 0) {
         fill("white");
       }
@@ -96,12 +96,14 @@ function showGrid() {
   }
 }
 
+
 function createArray(howBig) {
   let newArray = [];
   let scalar = 0.05;
   for (let y=0; y<howBig; y++) {
     newArray.push([]);
     for (let x=0; x<howBig; x++) {
+      // creating perlin noise 
       let noiseValue = round(noise(x*scalar, y*scalar)*4);
       newArray[y].push(noiseValue);
     }
