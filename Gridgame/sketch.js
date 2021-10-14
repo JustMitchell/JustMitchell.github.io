@@ -4,6 +4,7 @@ let cellAmount = 250;
 let grid;
 let cellSize;
 
+
 function setup() {
   if (windowHeight < windowWidth) {
     createCanvas(windowHeight*0.8, windowHeight*0.8);
@@ -11,10 +12,10 @@ function setup() {
   else{
     createCanvas(windowWidth*0.8, windowWidth*0.8);
   }
-
   grid = createArray(cellAmount);
   cellSize = width/cellAmount;
 }
+
 
 function draw() {
   background(220);
@@ -99,7 +100,7 @@ function showGrid() {
 
 function createArray(howBig) {
   let newArray = [];
-  let scalar = 0.05;
+  let scalar = 0.03;
   for (let y=0; y<howBig; y++) {
     newArray.push([]);
     for (let x=0; x<howBig; x++) {
