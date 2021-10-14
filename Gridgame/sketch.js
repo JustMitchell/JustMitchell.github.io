@@ -3,8 +3,11 @@
 let cellAmount = 250;
 let grid;
 let cellSize;
+let backgroundMusic;
 
-
+function preload() {
+  backgroundMusic = loadSound("assets/Harp.mp3");
+}
 function setup() {
   if (windowHeight < windowWidth) {
     createCanvas(windowHeight*0.8, windowHeight*0.8);
@@ -14,6 +17,7 @@ function setup() {
   }
   grid = createArray(cellAmount);
   cellSize = width/cellAmount;
+  backgroundMusic.loop();
 }
 
 
