@@ -4,6 +4,8 @@ let cellAmount = 250;
 let grid;
 let cellSize;
 let backgroundMusic;
+let musicButton;
+let isMusicPlaying = false;
 
 function preload() {
   backgroundMusic = loadSound("assets/Harp.mp3");
@@ -17,15 +19,57 @@ function setup() {
   }
   grid = createArray(cellAmount);
   cellSize = width/cellAmount;
-  backgroundMusic.loop();
+
+  musicButton = new Button (0, 0, width / 10, height / 20);
 }
 
 
 function draw() {
   background(220);
   showGrid();
+  musicButton.display();
 }
 
+
+class Button {
+  constructor(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.width = w;
+    this.height = h;
+    this.hoverColor = "#dccfec";
+    this.notHoveredColor = "#4f517d";
+  }
+
+  display() {
+    if (this.checkIfInside(mouseX, mouseY)) {
+      fill(this.hoverColor);
+    }
+    else {
+      fill(this.notHoveredColor);
+    }
+    rect(this.x, this.y, this.width, this.height);
+    textSize(20);
+    fill("white");
+    text("Music!", this.x + 2, this.y + 25);
+  }
+
+  checkIfInside(x, y) {
+    return x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height;
+  }
+}
+
+function mousePressed() {
+  if (musicButton.checkIfInside(mouseX, mouseY)) {
+    isMusicPlaying =  !isMusicPlaying;
+  }
+  if (isMusicPlaying === true) {
+    backgroundMusic.loop();
+  }
+  else {
+    backgroundMusic.pause();
+  }
+}
 
 function mouseDragged() {
   if (mouseX <= width && mouseY <= height){
