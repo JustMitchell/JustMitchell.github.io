@@ -99,6 +99,14 @@ class Player {
       speedY += gravity;
     }
   }
+  keyPressed() {
+    if (isJumping === false) {
+      if (keyCode === 32) {
+        isJumping = true;
+        speedY = -5;
+      }
+    }
+  }
 }
 // detects when player hits enter tp and moves it to exit tp
 function ballHitTp() {
@@ -193,11 +201,11 @@ function jumping() {
   }
 }
 // jump when space is pressed
-function keyPressed() {
-  if (isJumping === false) {
-    if (keyCode === 32) {
-      isJumping = true;
-      speedY = -5;
-    }
-  }
-}
+// function keyPressed() {
+//   if (isJumping === false) {
+//     if (keyCode === 32) {
+//       isJumping = true;
+//       speedY = -5;
+//     }
+//   }
+// }
